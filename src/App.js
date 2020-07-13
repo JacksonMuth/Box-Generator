@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState }from 'react';
 import './App.css';
+import BoxForm from './components/BoxForm';
+import BoxList from './components/BoxList';
 
 function App() {
+  const [allboxes, setallboxes] = useState([]);
+
+  const [box, setbox] = useState({
+    size: "",
+    color: ""
+  })
+
+  const addBox = () => {
+    const [...currBox] = allboxes;
+    currBox.push(box);
+    setallboxes(currBox);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BoxForm 
+        box={ box }
+        setbox={ setbox }
+        newSubmit={ addBox }
+      />
+
+
+
+      <BoxList allBoxies = {allboxes} />
+
     </div>
   );
 }
