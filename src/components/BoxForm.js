@@ -6,6 +6,7 @@ const BoxForm = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         newSubmit();
+        e.target.reset();
     }
 
     const changebox = e => {
